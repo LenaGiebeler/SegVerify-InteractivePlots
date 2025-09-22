@@ -15,7 +15,27 @@
 
     header{padding:24px 20px 8px; text-align:center}
     header h1{margin:0 0 6px; font-size:28px; font-weight:700}
-    header p{margin:0; color:var(--muted)}
+    
+    .header-inner p.lead {
+    margin:8px auto 14px;
+    color:var(--muted);
+    max-width: 1600px;
+    }
+
+    .subnav a {
+    color:var(--fg);
+    text-decoration:underline;
+    text-underline-offset:3px;
+    margin:0 .5rem;
+    }
+    .subnav a:hover { color:#0f172a; }
+
+    .subnav a.active {
+    font-weight:700;
+    text-decoration:none; 
+    cursor:default;
+    }
+
 
     .section{margin:22px; padding:18px; background:linear-gradient(180deg, rgba(238,243,252,.65), rgba(245,248,255,.65)); border:1px solid var(--border); border-radius:18px; box-shadow:var(--shadow)}
     .section h2{margin:0 4px 14px; font-size:20px}
@@ -35,10 +55,30 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Heart</h1>
-    <p>The heart plot shows only moderate agreement when all models are included, mainly because CADS follows a different anatomical definition. Once CADS is excluded, the remaining models show good agreement with Dice scores above 95% and volume consensus agreement exceeding 90%.</p>
-  </header>
+    <header style="position:relative">
+        <!-- Back button (links oben) -->
+        <a class="back-btn" href="index.html" title="Back to Home"
+           style="position:absolute; top:20px; left:20px; display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:10px; border:1px solid var(--border); background:#fff; text-decoration:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px; height:18px">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </a>
+      
+        <h1>Heart</h1>
+      
+        <p class="lead">
+          The heart plots reveal only moderate agreement when all models are included, mainly because CADS applies a different anatomical definition — focusing on the ventricles and excluding major vessels. Once CADS is excluded, the remaining models show consistently high agreement with Dice scores above 95% and volume overlap exceeding 90%.
+        </p>
+      
+        <!-- gleiche Navigation wie auf der Startseite; Heart ist aktiv -->
+        <nav class="subnav" aria-label="Section navigation">
+          <a href="index.html">Home</a> |
+          <a href="heart.html" class="active">Heart</a> |
+          <a href="ribs.html">Ribs</a> |
+          <a href="vertebrae.html">Vertebrae</a> |
+          <a href="sternum.html">Sternum</a>
+        </nav>
+      </header>
 
   <!-- All models -->
   <section class="section">
