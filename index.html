@@ -12,14 +12,33 @@
       --border:#e5e7eb;       
       --accent:#2563eb;
       --shadow:0 1px 3px rgba(0,0,0,.06), 0 6px 20px rgba(0,0,0,.05);
+      --header-max: 1100px;   /* gemeinsame Breite für Titel + Text + Nav */
     }
     *{box-sizing:border-box}
     body{margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:var(--bg); color:var(--fg)}
 
-    header{padding:28px 20px 12px; text-align:center}
-    header h1{margin:0 0 10px; font-size:clamp(22px,2.8vw,32px); font-weight:700}
-    header p{margin:0; color:var(--muted)}
+    /* Header mit gemeinsamer Innenbreite */
+    header{padding:28px 20px 8px; display:flex; justify-content:center}
+    .header-inner{width:100%; max-width:var(--header-max); text-align:center}
+    .header-inner h1{margin:0 0 10px; font-size:clamp(22px,2.8vw,32px); font-weight:700}
+    .header-inner p.lead{margin:8px 0 8px; color:var(--muted)}
 
+    /* Schlanke Pipe-Navigation */
+    .subnav{
+      margin:8px 0 6px;
+      font-size:14px;
+      color:var(--fg);
+      user-select:none;
+    }
+    .subnav a{
+      color:var(--fg);
+      text-decoration:underline;
+      text-underline-offset:2px;
+      margin:0 .35rem;
+    }
+    .subnav a:hover{color:#0f172a}
+
+    /* Sektionen optisch getrennt */
     .section{
       margin:22px; padding:18px;
       background:linear-gradient(180deg, rgba(238,243,252,.65), rgba(245,248,255,.65));
@@ -34,6 +53,7 @@
     }
     @media (max-width: 980px){ .grid{grid-template-columns:1fr} }
 
+    /* Karten */
     .card{
       display:flex; flex-direction:column;
       background:var(--card);
@@ -53,101 +73,76 @@
     }
     .btn:hover{border-color:#cbd5e1; background:#f1f5f9}
 
+    /* klickbarer Abschnittstitel + Pfeil-Link */
     .section-title {
       display:flex; align-items:center; justify-content:space-between;
       gap:8px; margin:0 4px 14px;
+      font-size:clamp(18px,2.2vw,24px); font-weight:600;
     }
-    .section-title a {
-      color: inherit; text-decoration:none; font-size:clamp(18px,2.2vw,24px); font-weight:600;
+    .section-title a.title {
+      color: inherit; text-decoration:none;
     }
-    .section-title a:hover { text-decoration:underline; }
+    .section-title a.title:hover { text-decoration:underline }
     .section-title .jump {
       display:inline-flex; align-items:center; justify-content:center;
       width:34px; height:34px; border-radius:10px;
-      border:1px solid var(--border); background:#fff;
-      text-decoration:none;
+      border:1px solid var(--border); background:#fff; text-decoration:none;
     }
-    .section-title .jump:hover { background:#f1f5f9; border-color:#cbd5e1; }
-    .section-title .jump svg { width:18px; height:18px; }
+    .section-title .jump:hover { background:#f1f5f9; border-color:#cbd5e1 }
+    .section-title .jump svg { width:18px; height:18px }
 
+    /* Frames – normale iFrames, Autoscale übernimmt Größe */
     .frame-wrap{
       position:relative; overflow:hidden; background:#fff;
-      height:520px;           
-      --s: .90;               
+      /* Start-Höhe; der Autoscaler passt die tatsächliche iFrame-Höhe an */
+      min-height:320px;
     }
     .frame-wrap iframe{
-      transform: scale(var(--s));
-      transform-origin: 0 0;
-      width: calc(100% / var(--s));
-      height: calc(100% / var(--s));
+      width:100%; height:100%;
       border:0; display:block;
     }
-    header p.lead {
-    margin: 8px auto 14px;
-    color: var(--muted);
-    max-width: 1100px;
-    }
-
-    .subnav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    padding: 10px 0 4px;
-    }
-    .subnav a {
-    text-decoration: none;
-    color: var(--fg);
-    border: 1px solid var(--border);
-    background: #fff;
-    padding: 8px 12px;
-    border-radius: 999px;
-    font-size: 14px;
-    transition: background .15s ease, border-color .15s ease, transform .05s ease;
-    }
-    .subnav a:hover { background: #f1f5f9; border-color: #cbd5e1; }
-    .subnav a:active { transform: translateY(1px); }
 
     footer{color:var(--muted); padding:28px 20px 40px; text-align:center}
   </style>
 </head>
 <body>
-    <header>
-        <h1>In search of truth: Evaluating concordance of AI-based anatomy segmentation models</h1>
-      
-        <p class="lead">
-          This website presents the interactive plots accompanying the report
-          <em>“In search of truth: Evaluating concordance of AI-based anatomy segmentation models.”</em>
-          The startpage shows <strong>Volume</strong> and <strong>Dice</strong> plots for the groups
-          <em>Lung</em>, <em>Heart</em>, <em>Ribs</em>, <em>Vertebrae</em>, and <em>Sternum</em>,
-          each including <strong>all</strong> models considered in the analysis.
-          For some groups, dedicated sub-pages provide additional plots based on our findings.
-          All plots are fully interactive: you can zoom, pan, and toggle models in the legend.
-          Use <strong>Open</strong> to launch the respective plot in a new window.
-        </p>
-      
-        <nav class="subnav" aria-label="Section navigation">
-          <a href="#lung">Lung</a>
-          <a href="#heart">Heart</a>
-          <a href="#ribs">Ribs</a>
-          <a href="#vertebrae">Vertebrae</a>
-          <a href="#sternum">Sternum</a>
-        </nav>
-      </header>
+  <header>
+    <div class="header-inner">
+      <h1>In search of truth: Evaluating concordance of AI-based anatomy segmentation models</h1>
+
+      <p class="lead">
+        This website presents the interactive plots accompanying the report
+        <em>“In search of truth: Evaluating concordance of AI-based anatomy segmentation models.”</em>
+        The homepage shows <strong>Volume</strong> and <strong>Dice</strong> plots for the groups
+        <em>Lung</em>, <em>Heart</em>, <em>Ribs</em>, <em>Vertebrae</em>, and <em>Sternum</em>,
+        each including <strong>all</strong> models considered in the analysis.
+        For some groups, dedicated sub-pages provide additional plots based on our findings.
+        All plots are fully interactive — you can zoom, pan, and toggle models in the legend.
+        Use <strong>Open</strong> to launch the respective plot in a new window.
+      </p>
+
+      <!-- schlanke Pipe-Navigation -->
+      <nav class="subnav" aria-label="Section navigation">
+        <a href="#lung">Lung</a> |
+        <a href="#ribs">Ribs</a> |
+        <a href="#vertebrae">Vertebrae</a> |
+        <a href="#heart">Heart</a> |
+        <a href="#sternum">Sternum</a>
+      </nav>
+    </div>
+  </header>
 
   <!-- Lung -->
   <section class="section" id="lung">
-    <h2 class="section-title">
-      <span>Lung</span>
-    </h2>
+    <div class="section-title"><span>Lung</span></div>
     <div class="grid">
       <div class="card">
         <header>
           <h3>Volume</h3>
           <button class="btn" onclick="openPlot('volume_plots/Overlap_percent_of_model_volumes_grouped_lung.html')">Open</button>
         </header>
-        <div class="frame-wrap" style="--s:.90">
-          <iframe src="volume_plots/Overlap_percent_of_model_volumes_grouped_lung.html" title="Lung Volume Plot" loading="lazy"></iframe>
+        <div class="frame-wrap">
+          <iframe data-autoscale src="volume_plots/Overlap_percent_of_model_volumes_grouped_lung.html" title="Lung Volume Plot" loading="lazy"></iframe>
         </div>
       </div>
       <div class="card">
@@ -155,8 +150,8 @@
           <h3>Dice</h3>
           <button class="btn" onclick="openPlot('dice_plots/Dice_scatter_interactive_lung.html')">Open</button>
         </header>
-        <div class="frame-wrap" style="--s:.90">
-          <iframe src="dice_plots/Dice_scatter_interactive_lung.html" title="Lung Dice Plot" loading="lazy"></iframe>
+        <div class="frame-wrap">
+          <iframe data-autoscale src="dice_plots/Dice_scatter_interactive_lung.html" title="Lung Dice Plot" loading="lazy"></iframe>
         </div>
       </div>
     </div>
@@ -164,17 +159,15 @@
 
   <!-- Heart -->
   <section class="section" id="heart">
-    <h2 class="section-title">
-      <span>Heart</span>
-    </h2>
+    <div class="section-title"><span>Heart</span></div>
     <div class="grid">
       <div class="card">
         <header>
           <h3>Volume</h3>
           <button class="btn" onclick="openPlot('volume_plots/Overlap_percent_of_model_volumes_grouped_heart.html')">Open</button>
         </header>
-        <div class="frame-wrap" style="--s:.90">
-          <iframe src="volume_plots/Overlap_percent_of_model_volumes_grouped_heart.html" title="Heart Volume Plot" loading="lazy"></iframe>
+        <div class="frame-wrap">
+          <iframe data-autoscale src="volume_plots/Overlap_percent_of_model_volumes_grouped_heart.html" title="Heart Volume Plot" loading="lazy"></iframe>
         </div>
       </div>
       <div class="card">
@@ -182,8 +175,8 @@
           <h3>Dice</h3>
           <button class="btn" onclick="openPlot('dice_plots/Dice_scatter_interactive_heart.html')">Open</button>
         </header>
-        <div class="frame-wrap" style="--s:.90">
-          <iframe src="dice_plots/Dice_scatter_interactive_heart.html" title="Heart Dice Plot" loading="lazy"></iframe>
+        <div class="frame-wrap">
+          <iframe data-autoscale src="dice_plots/Dice_scatter_interactive_heart.html" title="Heart Dice Plot" loading="lazy"></iframe>
         </div>
       </div>
     </div>
@@ -192,7 +185,7 @@
   <!-- Ribs -->
   <section class="section" id="ribs">
     <div class="section-title">
-      <a href="ribs.html" title="Open Ribs page">Ribs 3–6</a>
+      <a class="title" href="ribs.html" title="Open Ribs page">Ribs 3–6</a>
       <a class="jump" href="ribs.html" title="Open Ribs page">
         <svg viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M7 17L17 7M7 7h10v10"/>
@@ -205,8 +198,8 @@
           <h3>Volume</h3>
           <button class="btn" onclick="openPlot('volume_plots/Overlap_percent_of_model_volumes_grouped_ribs_3-6.html')">Open</button>
         </header>
-        <div class="frame-wrap" style="--s:.90">
-          <iframe src="volume_plots/Overlap_percent_of_model_volumes_grouped_ribs_3-6.html" title="Ribs Volume Plot" loading="lazy"></iframe>
+        <div class="frame-wrap">
+          <iframe data-autoscale src="volume_plots/Overlap_percent_of_model_volumes_grouped_ribs_3-6.html" title="Ribs Volume Plot" loading="lazy"></iframe>
         </div>
       </div>
       <div class="card">
@@ -214,8 +207,8 @@
           <h3>Dice</h3>
           <button class="btn" onclick="openPlot('dice_plots/Dice_scatter_interactive_ribs.html')">Open</button>
         </header>
-        <div class="frame-wrap" style="--s:.90">
-          <iframe src="dice_plots/Dice_scatter_interactive_ribs.html" title="Ribs Dice Plot" loading="lazy"></iframe>
+        <div class="frame-wrap">
+          <iframe data-autoscale src="dice_plots/Dice_scatter_interactive_ribs.html" title="Ribs Dice Plot" loading="lazy"></iframe>
         </div>
       </div>
     </div>
@@ -224,7 +217,7 @@
   <!-- Vertebrae -->
   <section class="section" id="vertebrae">
     <div class="section-title">
-      <a href="vertebrae.html" title="Open Vertebrae page">Vertebrae T2–T10</a>
+      <a class="title" href="vertebrae.html" title="Open Vertebrae page">Vertebrae T2–T10</a>
       <a class="jump" href="vertebrae.html" title="Open Vertebrae page">
         <svg viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M7 17L17 7M7 7h10v10"/>
@@ -237,8 +230,8 @@
           <h3>Volume</h3>
           <button class="btn" onclick="openPlot('volume_plots/Overlap_percent_of_model_volumes_grouped_Vertebrae_T_2-10.html')">Open</button>
         </header>
-        <div class="frame-wrap" style="--s:.90">
-          <iframe src="volume_plots/Overlap_percent_of_model_volumes_grouped_Vertebrae_T_2-10.html" title="Vertebrae Volume Plot" loading="lazy"></iframe>
+        <div class="frame-wrap">
+          <iframe data-autoscale src="volume_plots/Overlap_percent_of_model_volumes_grouped_Vertebrae_T_2-10.html" title="Vertebrae Volume Plot" loading="lazy"></iframe>
         </div>
       </div>
       <div class="card">
@@ -246,8 +239,8 @@
           <h3>Dice</h3>
           <button class="btn" onclick="openPlot('dice_plots/Dice_scatter_interactive_vertebrae.html')">Open</button>
         </header>
-        <div class="frame-wrap" style="--s:.90">
-          <iframe src="dice_plots/Dice_scatter_interactive_vertebrae.html" title="Vertebrae Dice Plot" loading="lazy"></iframe>
+        <div class="frame-wrap">
+          <iframe data-autoscale src="dice_plots/Dice_scatter_interactive_vertebrae.html" title="Vertebrae Dice Plot" loading="lazy"></iframe>
         </div>
       </div>
     </div>
@@ -255,17 +248,15 @@
 
   <!-- Sternum -->
   <section class="section" id="sternum">
-    <h2 class="section-title">
-      <span>Sternum</span>
-    </h2>
+    <div class="section-title"><span>Sternum</span></div>
     <div class="grid">
       <div class="card">
         <header>
           <h3>Volume</h3>
           <button class="btn" onclick="openPlot('volume_plots/Overlap_percent_of_model_volumes_grouped_sternum.html')">Open</button>
         </header>
-        <div class="frame-wrap" style="--s:.90">
-          <iframe src="volume_plots/Overlap_percent_of_model_volumes_grouped_sternum.html" title="Sternum Volume Plot" loading="lazy"></iframe>
+        <div class="frame-wrap">
+          <iframe data-autoscale src="volume_plots/Overlap_percent_of_model_volumes_grouped_sternum.html" title="Sternum Volume Plot" loading="lazy"></iframe>
         </div>
       </div>
       <div class="card">
@@ -273,8 +264,8 @@
           <h3>Dice</h3>
           <button class="btn" onclick="openPlot('dice_plots/Dice_scatter_interactive_sternum.html')">Open</button>
         </header>
-        <div class="frame-wrap" style="--s:.90">
-          <iframe src="dice_plots/Dice_scatter_interactive_sternum.html" title="Sternum Dice Plot" loading="lazy"></iframe>
+        <div class="frame-wrap">
+          <iframe data-autoscale src="dice_plots/Dice_scatter_interactive_sternum.html" title="Sternum Dice Plot" loading="lazy"></iframe>
         </div>
       </div>
     </div>
@@ -283,7 +274,64 @@
   <footer>© SegVerify Interactive Plots</footer>
 
   <script>
+    // "Open" Buttons im neuen Tab
     function openPlot(url){ window.open(url,'_blank','noopener,noreferrer'); }
+
+    // --- Autoscale für same-origin Plotly-HTMLs in iframes ---
+    (function(){
+      function autoscaleFrame(iframe){
+        try{
+          const doc = iframe.contentDocument || iframe.contentWindow.document;
+          if (!doc) return;
+
+          const graph = doc.querySelector('.plotly-graph-div') ||
+                        doc.querySelector('#plot') ||
+                        doc.body.firstElementChild;
+          if (!graph) return;
+
+          // Originalgröße der Plot-Seite
+          const contentW = graph.scrollWidth || graph.offsetWidth || 1200;
+          const contentH = graph.scrollHeight || graph.offsetHeight || 800;
+
+          // verfügbare Breite des iframes
+          const frameW = iframe.clientWidth;
+          if (frameW <= 0) return;
+
+          const scale = frameW / contentW;
+
+          // Inhalt skaliert darstellen
+          doc.documentElement.style.height = '100%';
+          doc.body.style.margin = '0';
+          doc.body.style.transformOrigin = '0 0';
+          doc.body.style.transform = 'scale(' + scale + ')';
+
+          // iFrame-Höhe proportional setzen -> keine Scrollleisten
+          const newH = Math.ceil(contentH * scale);
+          iframe.style.height = newH + 'px';
+
+        } catch(e){ /* anderes Origin -> kein Zugriff */ }
+      }
+
+      function initAutoscale(){
+        const frames = Array.from(document.querySelectorAll('iframe[data-autoscale]'));
+        const rescaleAll = () => frames.forEach(autoscaleFrame);
+
+        frames.forEach(f => {
+          f.addEventListener('load', () => autoscaleFrame(f));
+          // Falls aus Cache schon geladen
+          if (f.contentDocument && f.contentDocument.readyState === 'complete'){
+            autoscaleFrame(f);
+          }
+        });
+        window.addEventListener('resize', rescaleAll);
+      }
+
+      if (document.readyState === 'loading'){
+        document.addEventListener('DOMContentLoaded', initAutoscale);
+      } else {
+        initAutoscale();
+      }
+    })();
   </script>
 </body>
 </html>
