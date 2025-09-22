@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vertebrae T2–T10 — Interactive Plots</title>
+  <style>
+    :root{
+      --bg:#ffffff; --fg:#1f2937; --muted:#6b7280;
+      --panel:#f3f6fb; --card:#ffffff; --border:#e5e7eb;
+      --shadow:0 1px 3px rgba(0,0,0,.06), 0 6px 20px rgba(0,0,0,.05);
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:var(--bg); color:var(--fg)}
+    header{padding:24px 20px 8px; text-align:center}
+    header h1{margin:0 0 8px; font-size:clamp(22px,2.8vw,30px)}
+    header p{margin:0; color:var(--muted)}
+    .section{margin:22px; padding:18px; background:linear-gradient(180deg, rgba(238,243,252,.65), rgba(245,248,255,.65)); border:1px solid var(--border); border-radius:18px; box-shadow:var(--shadow)}
+    .section h2{margin:0 4px 14px; font-size:clamp(18px,2.2vw,24px)}
+    .grid{display:grid; gap:18px; grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media (max-width:980px){.grid{grid-template-columns:1fr}}
+    .card{display:flex; flex-direction:column; background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; min-height:360px; box-shadow:var(--shadow)}
+    .card header{display:flex; align-items:center; justify-content:space-between; padding:10px 12px 8px; background:#fff; border-bottom:1px solid var(--border)}
+    .card h3{margin:0; font-size:15px; font-weight:600}
+    .btn{appearance:none; border:1px solid var(--border); background:#fff; color:var(--fg); font-size:13px; padding:6px 10px; border-radius:10px; cursor:pointer}
+    .btn:hover{border-color:#cbd5e1; background:#f1f5f9}
+    .frame-wrap{flex:1; min-height:320px}
+    .frame-wrap iframe{width:100%; height:100%; border:0; display:block}
+    footer{color:var(--muted); padding:24px 20px 40px; text-align:center}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Vertebrae T2–T10</h1>
+    <p>First, all models. Below, CADS &amp; MOOSE only.</p>
+  </header>
+
+  <!-- All models -->
+  <section class="section">
+    <h2>All Models</h2>
+    <div class="grid">
+      <div class="card">
+        <header><h3>Volume</h3><button class="btn" onclick="openPlot('volume_plots/Overlap_percent_of_model_volumes_grouped_Vertebrae_T_2-10.html')">Open</button></header>
+        <div class="frame-wrap">
+          <iframe src="volume_plots/Overlap_percent_of_model_volumes_grouped_Vertebrae_T_2-10.html" title="Vertebrae Volume (all)"></iframe>
+        </div>
+      </div>
+      <div class="card">
+        <header><h3>Dice</h3><button class="btn" onclick="openPlot('dice_plots/Dice_scatter_interactive_vertebrae.html')">Open</button></header>
+        <div class="frame-wrap">
+          <iframe src="dice_plots/Dice_scatter_interactive_vertebrae.html" title="Vertebrae Dice (all)"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CADS & MOOSE -->
+  <section class="section">
+    <h2>CADS &amp; MOOSE</h2>
+    <div class="grid">
+      <div class="card">
+        <header><h3>Volume</h3><button class="btn" onclick="openPlot('volume_plots/Exclude_Models/Overlap_percent_of_model_volumes_grouped_Vertebrae_T_2-10_only_MOOSE_CADS.html')">Open</button></header>
+        <div class="frame-wrap">
+          <iframe src="volume_plots/Overlap_percent_of_model_volumes_grouped_Vertebrae_T_2-10_only_MOOSE_CADS.html" title="Vertebrae Volume (CADS+MOOSE)"></iframe>
+        </div>
+      </div>
+      <div class="card">
+        <header><h3>Dice</h3><button class="btn" onclick="openPlot('dice_plots/Exclude_Models/Dice_scatter_interactive_vertebrae_CADS_MOOSE.html')">Open</button></header>
+        <div class="frame-wrap">
+          <iframe src="dice_plots/Exclude_Models/Dice_scatter_interactive_vertebrae_CADS_MOOSE.html" title="Vertebrae Dice (CADS+MOOSE)"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>© SegVerify Interactive Plots</footer>
+  <script>function openPlot(u){window.open(u,'_blank','noopener,noreferrer');}</script>
+</body>
+</html>
