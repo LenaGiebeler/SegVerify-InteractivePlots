@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vertebrae T2-T10</title>
+  <title>Sternum</title>
   <style>
     :root{
       --bg:#ffffff; --fg:#1f2937; --muted:#6b7280;
@@ -63,54 +63,89 @@
           </svg>
         </a>
       
-        <h1>Vertebrae T2-T10</h1>
+        <h1>Sternum</h1>
       
         <p class="lead">
-            The vertebra plots show poor agreement across all six models, with Dice scores and consensus volume agreement ranging from 0% to 95%. Segmentation errors in four models 
-            (TotalSegmentator 1.5, TotalSegmentator 2.6, MultiTalent, Auto3DSeg) are the main cause, likely due to issues in the TotalSegmentator training data.
-            After excluding these models, agreement between MOOSE and CADS improves, with Dice scores above 90% and consensus volume agreement over 85%. Remaining differences are due to segmentation coverage: MOOSE produces slightly larger vertebral volumes by including less spacing between vertebrae.
+            The sternum plots show moderate agreement across all five models, with Dice scores above 85% and consensus volume agreement above 75%.
+            Excluding CADS slightly improves the results. Pairwise comparisons show very good agreement within two model pairs: TotalSegmentator 2.6 with Auto3DSeg, and MOOSE with MultiTalent.
         </p>
       
         <nav class="subnav" aria-label="Section navigation">
           <a href="index.html">Home</a> |
           <a href="heart.html">Heart</a> |
           <a href="ribs.html">Ribs</a> |
-          <a href="vertebrae.html" class="active">Vertebrae</a> |
-          <a href="sternum.html">Sternum</a>
+          <a href="vertebrae.html">Vertebrae</a> |
+          <a href="sternum.html" class="active">Sternum</a>
         </nav>
       </header>
 
   <section class="section">
-    <h2>Agreement between all six models (Auto3DSeg, MOOSE, MultiTalent, CADS, TotalSegmentator 1.5 and TotalSegmentator 2.6)</h2>
+    <h2>Agreement between Auto3DSeg, MOOSE, MultiTalent, CADS, and TotalSegmentator 2.6</h2>
     <div class="grid">
       <div class="card">
-        <header><h3>Volume</h3><button class="btn" onclick="openPlot('volume_plots/Overlap_percent_of_model_volumes_grouped_Vertebrae_T_2-10.html')">Open</button></header>
+        <header><h3>Volume</h3><button class="btn" onclick="openPlot('volume_plots/Overlap_percent_of_model_volumes_grouped_sternum.html')">Open</button></header>
         <div class="frame-wrap">
-          <iframe data-autoscale src="volume_plots/Overlap_percent_of_model_volumes_grouped_Vertebrae_T_2-10.html" title="Vertebrae Volume (all)"></iframe>
+          <iframe data-autoscale src="volume_plots/Overlap_percent_of_model_volumes_grouped_sternum.html" title="Sternum Volume (all)"></iframe>
         </div>
       </div>
       <div class="card">
-        <header><h3>Dice</h3><button class="btn" onclick="openPlot('dice_plots/Dice_scatter_interactive_vertebrae.html')">Open</button></header>
+        <header><h3>Dice</h3><button class="btn" onclick="openPlot('dice_plots/Dice_scatter_interactive_sternum.html')">Open</button></header>
         <div class="frame-wrap">
-          <iframe data-autoscale src="dice_plots/Dice_scatter_interactive_vertebrae.html" title="Vertebrae Dice (all)"></iframe>
+          <iframe data-autoscale src="dice_plots/Dice_scatter_interactive_sternum.html" title="Sternum Dice (all)"></iframe>
         </div>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2>Agreement between MOOSE and CADS</h2>
+    <h2>Agreement between Auto3DSeg, MOOSE, MultiTalent, and TotalSegmentator 2.6 (NO CADS)</h2>
     <div class="grid">
       <div class="card">
-        <header><h3>Volume</h3><button class="btn" onclick="openPlot('volume_plots/Exclude_Models/Overlap_percent_of_model_volumes_grouped_Vertebrae_T_2-10_only_MOOSE_CADS.html')">Open</button></header>
+        <header><h3>Volume</h3><button class="btn" onclick="openPlot('volume_plots/Exclude_Models/Overlap_percent_of_model_volumes_grouped_sternum_no_CADS.html')">Open</button></header>
         <div class="frame-wrap">
-          <iframe data-autoscale src="volume_plots/Exclude_Models/Overlap_percent_of_model_volumes_grouped_Vertebrae_T_2-10_only_MOOSE_CADS.html" title="Vertebrae Volume (MOOSE & CADS)"></iframe>
+          <iframe data-autoscale src="volume_plots/Exclude_Models/Overlap_percent_of_model_volumes_grouped_sternum_no_CADS.html" title="Sternum Volume (no CADS)"></iframe>
         </div>
       </div>
       <div class="card">
-        <header><h3>Dice</h3><button class="btn" onclick="openPlot('dice_plots/Exclude_Models/Dice_scatter_interactive_vertebrae_CADS_MOOSE.html')">Open</button></header>
+        <header><h3>Dice</h3><button class="btn" onclick="openPlot('dice_plots/Exclude_Models/Dice_scatter_interactive_sternum_no_CADS.html')">Open</button></header>
         <div class="frame-wrap">
-          <iframe data-autoscale src="dice_plots/Exclude_Models/Dice_scatter_interactive_vertebrae_CADS_MOOSE.html" title="Vertebrae Dice (MOOSE & CADS)"></iframe>
+          <iframe data-autoscale src="dice_plots/Exclude_Models/Dice_scatter_interactive_sternum_no_CADS.html" title="Sternum Dice (no CADS)"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Agreement between MOOSE and MultiTalent</h2>
+    <div class="grid">
+      <div class="card">
+        <header><h3>Volume</h3><button class="btn" onclick="openPlot('volume_plots/Exclude_Models/Overlap_percent_of_model_volumes_grouped_sternum_only_MOOSE_MT.html')">Open</button></header>
+        <div class="frame-wrap">
+          <iframe data-autoscale src="volume_plots/Exclude_Models/Overlap_percent_of_model_volumes_grouped_sternum_only_MOOSE_MT.html" title="Sternum Volume (MOOSE & MultiTalent)"></iframe>
+        </div>
+      </div>
+      <div class="card">
+        <header><h3>Dice</h3><button class="btn" onclick="openPlot('dice_plots/Exclude_Models/Dice_scatter_interactive_sternum_only_MOOSE_MT.html')">Open</button></header>
+        <div class="frame-wrap">
+          <iframe data-autoscale src="dice_plots/Exclude_Models/Dice_scatter_interactive_sternum_only_MOOSE_MT.html" title="Sternum Dice (MOOSE & MultiTalent)"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Agreement between TotalSegmentator 2.6 and Auto3DSeg</h2>
+    <div class="grid">
+      <div class="card">
+        <header><h3>Volume</h3><button class="btn" onclick="openPlot('volume_plots/Exclude_Models/Overlap_percent_of_model_volumes_grouped_sternum_only_TS2.6_Auto3DSeg.html')">Open</button></header>
+        <div class="frame-wrap">
+          <iframe data-autoscale src="volume_plots/Exclude_Models/Overlap_percent_of_model_volumes_grouped_sternum_only_TS2.6_Auto3DSeg.html" title="Sternum Volume (TotalSegmentator 2.6 & Auto3DSeg)"></iframe>
+        </div>
+      </div>
+      <div class="card">
+        <header><h3>Dice</h3><button class="btn" onclick="openPlot('dice_plots/Exclude_Models/Dice_scatter_interactive_sternum_only_TS2.6_Auto3DSeg.html')">Open</button></header>
+        <div class="frame-wrap">
+          <iframe data-autoscale src="dice_plots/Exclude_Models/Dice_scatter_interactive_sternum_only_TS2.6_Auto3DSeg.html" title="Sternum Dice (TotalSegmentator 2.6 & Auto3DSeg)"></iframe>
         </div>
       </div>
     </div>
