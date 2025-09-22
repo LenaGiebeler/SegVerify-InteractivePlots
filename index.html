@@ -12,33 +12,42 @@
       --border:#e5e7eb;       
       --accent:#2563eb;
       --shadow:0 1px 3px rgba(0,0,0,.06), 0 6px 20px rgba(0,0,0,.05);
-      --header-max: 1100px;   /* gemeinsame Breite für Titel + Text + Nav */
+      --header-max: 1200px;   
     }
     *{box-sizing:border-box}
     body{margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:var(--bg); color:var(--fg)}
-
-    /* Header mit gemeinsamer Innenbreite */
+  
     header{padding:28px 20px 8px; display:flex; justify-content:center}
     .header-inner{width:100%; max-width:var(--header-max); text-align:center}
-    .header-inner h1{margin:0 0 10px; font-size:clamp(22px,2.8vw,32px); font-weight:700}
-    .header-inner p.lead{margin:8px 0 8px; color:var(--muted)}
-
-    /* Schlanke Pipe-Navigation */
+    
+    .header-inner h1{
+      margin:0 0 14px;
+      font-size:32px;         
+      font-weight:700;
+      white-space:nowrap;     
+      overflow:hidden; text-overflow:ellipsis;
+    }
+  
+    .header-inner p.lead{
+      margin:8px 0 14px;
+      color:var(--muted);
+    }
+  
     .subnav{
-      margin:8px 0 6px;
-      font-size:14px;
+      margin:10px 0 6px;
+      font-size:16px;          
+      font-weight:600;         
       color:var(--fg);
       user-select:none;
     }
     .subnav a{
       color:var(--fg);
       text-decoration:underline;
-      text-underline-offset:2px;
-      margin:0 .35rem;
+      text-underline-offset:3px;
+      margin:0 .5rem;
     }
     .subnav a:hover{color:#0f172a}
 
-    /* Sektionen optisch getrennt */
     .section{
       margin:22px; padding:18px;
       background:linear-gradient(180deg, rgba(238,243,252,.65), rgba(245,248,255,.65));
@@ -53,7 +62,6 @@
     }
     @media (max-width: 980px){ .grid{grid-template-columns:1fr} }
 
-    /* Karten */
     .card{
       display:flex; flex-direction:column;
       background:var(--card);
@@ -73,7 +81,6 @@
     }
     .btn:hover{border-color:#cbd5e1; background:#f1f5f9}
 
-    /* klickbarer Abschnittstitel + Pfeil-Link */
     .section-title {
       display:flex; align-items:center; justify-content:space-between;
       gap:8px; margin:0 4px 14px;
@@ -91,10 +98,8 @@
     .section-title .jump:hover { background:#f1f5f9; border-color:#cbd5e1 }
     .section-title .jump svg { width:18px; height:18px }
 
-    /* Frames – normale iFrames, Autoscale übernimmt Größe */
     .frame-wrap{
       position:relative; overflow:hidden; background:#fff;
-      /* Start-Höhe; der Autoscaler passt die tatsächliche iFrame-Höhe an */
       min-height:320px;
     }
     .frame-wrap iframe{
@@ -121,7 +126,6 @@
         Use <strong>Open</strong> to launch the respective plot in a new window.
       </p>
 
-      <!-- schlanke Pipe-Navigation -->
       <nav class="subnav" aria-label="Section navigation">
         <a href="#lung">Lung</a> |
         <a href="#ribs">Ribs</a> |
@@ -274,10 +278,8 @@
   <footer>© SegVerify Interactive Plots</footer>
 
   <script>
-    // "Open" Buttons im neuen Tab
     function openPlot(url){ window.open(url,'_blank','noopener,noreferrer'); }
 
-    // --- Autoscale für same-origin Plotly-HTMLs in iframes ---
     (function(){
       function autoscaleFrame(iframe){
         try{
@@ -289,27 +291,23 @@
                         doc.body.firstElementChild;
           if (!graph) return;
 
-          // Originalgröße der Plot-Seite
           const contentW = graph.scrollWidth || graph.offsetWidth || 1200;
           const contentH = graph.scrollHeight || graph.offsetHeight || 800;
 
-          // verfügbare Breite des iframes
           const frameW = iframe.clientWidth;
           if (frameW <= 0) return;
 
           const scale = frameW / contentW;
 
-          // Inhalt skaliert darstellen
           doc.documentElement.style.height = '100%';
           doc.body.style.margin = '0';
           doc.body.style.transformOrigin = '0 0';
           doc.body.style.transform = 'scale(' + scale + ')';
 
-          // iFrame-Höhe proportional setzen -> keine Scrollleisten
           const newH = Math.ceil(contentH * scale);
           iframe.style.height = newH + 'px';
 
-        } catch(e){ /* anderes Origin -> kein Zugriff */ }
+        } catch(e){}
       }
 
       function initAutoscale(){
@@ -318,7 +316,6 @@
 
         frames.forEach(f => {
           f.addEventListener('load', () => autoscaleFrame(f));
-          // Falls aus Cache schon geladen
           if (f.contentDocument && f.contentDocument.readyState === 'complete'){
             autoscaleFrame(f);
           }
