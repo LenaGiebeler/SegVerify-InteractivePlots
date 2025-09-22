@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>In search of truth: Evaluating concordance of AI-based anatomy segmentation models - Overview Interactive Plots</title>
+  <style>
+    :root{
+      --bg:#ffffff; --fg:#1f2937; --muted:#6b7280; --card:#f8fafc; --border:#e5e7eb;
+      --accent:#2563eb; --accent-fg:#fff;
+    }
+    body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+         background:var(--bg);color:var(--fg)}
+    header{padding:24px 20px 8px}
+    header h1{margin:0 0 6px;font-size:clamp(20px,2.5vw,28px)}
+    header p{margin:0;color:var(--muted)}
+    .section{padding:20px}
+    .section h2{margin:0 0 12px;font-size:clamp(18px,2.2vw,24px)}
+    .grid{
+      display:grid; gap:16px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns: 1fr;}
+    }
+    .card{
+      position:relative; background:var(--card);
+      border:1px solid var(--border); border-radius:16px; overflow:hidden;
+      box-shadow:0 1px 2px rgba(0,0,0,.04);
+      min-height:360px;
+    }
+    .card header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 12px 8px; background:#fff; border-bottom:1px solid var(--border)
+    }
+    .card h3{margin:0; font-size:15px; font-weight:600}
+    .btn{
+      appearance:none; border:1px solid var(--border); background:#fff; color:var(--fg);
+      font-size:13px; padding:6px 10px; border-radius:10px; cursor:pointer;
+    }
+    .btn:hover{border-color:#d1d5db}
+    iframe{
+      width:100%; height:520px; border:0; display:block; background:#fff;
+    }
+    footer{color:var(--muted); padding:24px 20px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>In search of truth: Evaluating concordance of AI-based anatomy segmentation models - Overview Interactive Plots</h1>
+    <p>Klick auf „Öffnen“, um einen Plot als eigene Seite zu öffnen. Die eingebetteten Plots sind interaktiv.</p>
+  </header>
+
+  <!-- Lunge -->
+  <section class="section" id="lung">
+    <h2>Lung</h2>
+    <div class="grid">
+      <div class="card">
+        <header>
+          <h3>Volume</h3>
+          <button class="btn" onclick="openPlot('volume_plots/Overlap_percent_of_model_volumes_grouped_lung.html')">Öffnen</button>
+        </header>
+        <iframe src="volume_plots/Overlap_percent_of_model_volumes_grouped_lung.html" title="Lung Volume Plot"></iframe>
+      </div>
+      <div class="card">
+        <header>
+          <h3>Dice</h3>
+          <button class="btn" onclick="openPlot('dice_plots/Dice_scatter_interactive_lung.html')">Öffnen</button>
+        </header>
+        <iframe src="dice_plots/Dice_scatter_interactive_lung.html" title="Lung Dice Plot"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Herz -->
+  <section class="section" id="heart">
+    <h2>Heart</h2>
+    <div class="grid">
+      <div class="card">
+        <header>
+          <h3>Volume</h3>
+          <button class="btn" onclick="openPlot('volume_plots/Overlap_percent_of_model_volumes_grouped_heart.html')">Öffnen</button>
+        </header>
+        <iframe src="volume_plots/Overlap_percent_of_model_volumes_grouped_heart.html" title="Heart Volume Plot"></iframe>
+      </div>
+      <div class="card">
+        <header>
+          <h3>Dice</h3>
+          <button class="btn" onclick="openPlot('dice_plots/Dice_scatter_interactive_heart.html')">Öffnen</button>
+        </header>
+        <iframe src="dice_plots/Dice_scatter_interactive_heart.html" title="Heart Dice Plot"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rippen -->
+  <section class="section" id="ribs">
+    <h2>Ribs 3-6</h2>
+    <div class="grid">
+      <div class="card">
+        <header>
+          <h3>Volume</h3>
+          <button class="btn" onclick="openPlot('volume_plots/Overlap_percent_of_model_volumes_grouped_ribs_3-6.html.html')">Öffnen</button>
+        </header>
+        <iframe src="volume_plots/Overlap_percent_of_model_volumes_grouped_ribs_3-6.html" title="Ribs Volume Plot"></iframe>
+      </div>
+      <div class="card">
+        <header>
+          <h3>Dice</h3>
+          <button class="btn" onclick="openPlot('dice_plots/Dice_scatter_interactive_ribs.html')">Öffnen</button>
+        </header>
+        <iframe src="dice_plots/Dice_scatter_interactive_ribs.html" title="Ribs Dice Plot"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wirbel -->
+  <section class="section" id="vertebrae">
+    <h2>Vertebrae T2-T10</h2>
+    <div class="grid">
+      <div class="card">
+        <header>
+          <h3>Volume</h3>
+          <button class="btn" onclick="openPlot('volume_plots/Overlap_percent_of_model_volumes_grouped_Vertebrae_T_2-10.html')">Öffnen</button>
+        </header>
+        <iframe src="volume_plots/Overlap_percent_of_model_volumes_grouped_Vertebrae_T_2-10.html" title="Vertebrae Volume Plot"></iframe>
+      </div>
+      <div class="card">
+        <header>
+          <h3>Dice</h3>
+          <button class="btn" onclick="openPlot('dice_plots/Dice_scatter_interactive_vertebrae.html')">Öffnen</button>
+        </header>
+        <iframe src="dice_plots/Dice_scatter_interactive_vertebrae.html" title="Vertebrae Dice Plot"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sternum -->
+  <section class="section" id="sternum">
+    <h2>Sternum</h2>
+    <div class="grid">
+      <div class="card">
+        <header>
+          <h3>Volume</h3>
+          <button class="btn" onclick="openPlot('volume_plots/Overlap_percent_of_model_volumes_grouped_sternum.html')">Öffnen</button>
+        </header>
+        <iframe src="volume_plots/Overlap_percent_of_model_volumes_grouped_sternum.html" title="Sternum Volume Plot"></iframe>
+      </div>
+      <div class="card">
+        <header>
+          <h3>Dice</h3>
+          <button class="btn" onclick="openPlot('dice_plots/Dice_scatter_interactive_vertebrae.html')">Öffnen</button>
+        </header>
+        <iframe src="dice_plots/Dice_scatter_interactive_vertebrae.html" title="Sternum Dice Plot"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer>© Dein Projekt – GitHub Pages</footer>
+
+  <script>
+    function openPlot(url){
+      // Öffnet nur den einen Plot in neuem Tab/Fenster
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  </script>
+</body>
+</html>
