@@ -127,6 +127,46 @@
         All plots are fully interactive: you can zoom, pan, and toggle models in the legend.
         Use <em>Open</em> to launch the respective plot in a new window.
       </p>
+      <div style="max-width:1600px; margin:14px auto 6px; color:#374151; font-size:15px;">
+        <p>
+          <strong>Interactive visualization and review of outliers using the OHIF Viewer</strong>
+          Each data point in the plots can be clicked to open an
+          <a href="https://ohif.org/" target="_blank" rel="noopener">OHIF Viewer</a>
+          session showing the corresponding CT image together with all available
+          segmentation results for that case.
+          Segmentations can be arranged by dragging them into the desired viewport,
+          and the layout can be customized using the viewer controls in the top toolbar.
+        </p>
+      
+        <section class="section" id="resources">
+          <div class="section-title"><span>Resources</span></div>
+          <ul>
+            <li>
+              <strong>Preprint:</strong>
+              <a href="https://arxiv.org" target="_blank" rel="noopener">coming soon on arXiv</a>
+            </li>
+            <li>
+              <strong>Public data (Zenodo):</strong>
+              <a href="https://doi.org/10.5281/zenodo.17860591" target="_blank" rel="noopener">
+                https://doi.org/10.5281/zenodo.17860591
+              </a>
+            </li>
+            <li>
+              <strong>Code repository:</strong>
+              <a href="https://github.com/ImagingDataCommons/segmentation-comparison"
+                 target="_blank" rel="noopener">
+                https://github.com/ImagingDataCommons/segmentation-comparison
+              </a>
+            </li>
+            <li>
+              <strong>3D Slicer extension (CrossSegmentationExplorer):</strong>
+              <a href="https://github.com/ImagingDataCommons/CrossSegmentationExplorer"
+                 target="_blank" rel="noopener">
+                https://github.com/ImagingDataCommons/CrossSegmentationExplorer
+              </a>
+            </li>
+          </ul>
+        </section>      
 
       <nav class="subnav" aria-label="Section navigation">
         <a href="#lung">Lung</a> |
@@ -291,7 +331,7 @@
     </div>
   </section>
 
-  <footer>© SegVerify Interactive Plots</footer>
+  <footer></footer>
 
   <script>
     function openPlot(url){ window.open(url,'_blank','noopener,noreferrer'); }
