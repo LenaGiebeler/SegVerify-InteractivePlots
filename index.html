@@ -7,50 +7,40 @@
   <style>
     :root{
       --bg:#ffffff; --fg:#1f2937; --muted:#6b7280;
-      --panel:#f3f6fb;        
-      --card:#ffffff;         
-      --border:#e5e7eb;       
+      --panel:#f3f6fb;
+      --card:#ffffff;
+      --border:#e5e7eb;
       --accent:#2563eb;
       --shadow:0 1px 3px rgba(0,0,0,.06), 0 6px 20px rgba(0,0,0,.05);
     }
     *{box-sizing:border-box}
-    body{margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:var(--bg); color:var(--fg)}
-  
+    body{
+      margin:0;
+      font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      background:var(--bg);
+      color:var(--fg)
+    }
+
     header{padding:28px 20px 8px; display:flex; justify-content:center}
     .header-inner{
-        width:100%;
-        max-width:none;     
-        text-align:center;
+      width:100%;
+      max-width:none;
+      text-align:center;
     }
-    
+
     .header-inner h1{
       margin:0 0 14px;
-      font-size:32px;         
+      font-size:32px;
       font-weight:700;
-      white-space:nowrap;     
+      white-space:nowrap;
       overflow:hidden; text-overflow:ellipsis;
     }
-  
+
     .header-inner p.lead{
-      margin:8px auto 14px;
+      margin:0;                 
       color:var(--muted);
-      max-width: 1600px;
+      max-width:none;           
     }
-  
-    .subnav{
-      margin:10px 0 6px;
-      font-size:16px;          
-      font-weight:600;         
-      color:var(--fg);
-      user-select:none;
-    }
-    .subnav a{
-      color:var(--fg);
-      text-decoration:underline;
-      text-underline-offset:3px;
-      margin:0 .5rem;
-    }
-    .subnav a:hover{color:#0f172a}
 
     .section{
       margin:22px; padding:18px;
@@ -115,91 +105,105 @@
       display:grid;
       grid-template-columns: 420px minmax(0, 1fr);
       gap:18px;
-      align-items:start;
+      align-items:center;        
       margin: 10px auto 0;
     }
 
     @media (max-width: 1100px){
       .header-top{
         grid-template-columns: 1fr;
+        align-items:start;
       }
     }
 
     .resources-box{
-      margin:0;                
-      padding:16px;
+      margin:0;
+      padding:14px 16px;
     }
+    .resources-box .section-title{ margin-bottom:10px; }
 
-    .resources-list p{
-      margin: 10px 0;
+    .resources-items{
+      display:grid;
+      gap:12px;
+      font-size:15px;
       text-align:left;
     }
 
-    .resources-list a{
-      word-break: break-word;
+    .resource-link{
+      font-weight:700;
+      color:var(--accent);
+      text-decoration:none;
+      display:inline-block;
     }
+    .resource-link:hover{ text-decoration:underline; }
+
+    .resource-note{ color:var(--muted); font-weight:500; }
 
     .header-text{
       text-align:left;
     }
 
-    .header-text .lead{
-      margin:0;
-      max-width:none;         
+    .subnav{
+      display:flex;
+      justify-content:flex-start;
+      align-items:center;
+      gap:10px;
+      margin:12px 0 6px;
+      font-size:16px;
+      font-weight:600;
+      color:var(--fg);
+      user-select:none;
+      flex-wrap:wrap;
     }
-
+    .subnav a{
+      color:var(--fg);
+      text-decoration:underline;
+      text-underline-offset:3px;
+      margin:0 .25rem;
+    }
+    .subnav a:hover{color:#0f172a}
 
     footer{color:var(--muted); padding:28px 20px 40px; text-align:center}
   </style>
 </head>
+
 <body>
   <header>
     <div class="header-inner">
       <h1>In search of truth: Evaluating concordance of AI-based anatomy segmentation models</h1>
 
       <div class="header-top">
-
         <section class="section resources-box" id="resources">
           <div class="section-title"><span>Resources</span></div>
 
-          <div style="display:grid; gap:12px; font-size:15px; text-align:left;">
-
+          <div class="resources-items">
             <div>
-              <a href="https://arxiv.org"
-                target="_blank" rel="noopener"
-                style="font-weight:600; color:#2563eb; text-decoration:none;">
+              <a class="resource-link" href="https://arxiv.org" target="_blank" rel="noopener">
                 Preprint (arXiv)
               </a>
-              <span style="color:#6b7280;"> — coming soon</span>
+              <span class="resource-note"> — coming soon</span>
             </div>
 
             <div>
-              <a href="https://doi.org/10.5281/zenodo.17860591"
-                target="_blank" rel="noopener"
-                style="font-weight:600; color:#2563eb; text-decoration:none;">
+              <a class="resource-link" href="https://doi.org/10.5281/zenodo.17860591" target="_blank" rel="noopener">
                 Public data (Zenodo)
               </a>
             </div>
 
             <div>
-              <a href="https://github.com/ImagingDataCommons/segmentation-comparison"
-                target="_blank" rel="noopener"
-                style="font-weight:600; color:#2563eb; text-decoration:none;">
+              <a class="resource-link" href="https://github.com/ImagingDataCommons/segmentation-comparison" target="_blank" rel="noopener">
                 Code repository
               </a>
             </div>
 
             <div>
-              <a href="https://github.com/ImagingDataCommons/CrossSegmentationExplorer"
-                target="_blank" rel="noopener"
-                style="font-weight:600; color:#2563eb; text-decoration:none;">
+              <a class="resource-link" href="https://github.com/ImagingDataCommons/CrossSegmentationExplorer" target="_blank" rel="noopener">
                 3D Slicer extension (CrossSegmentationExplorer)
               </a>
             </div>
-
-  </div>
+          </div>
         </section>
-      
+
         <div class="header-text">
           <p class="lead">
             This website presents the interactive plots accompanying the report
@@ -216,16 +220,18 @@
             and the layout can be customized using the viewer controls in the top toolbar.
           </p>
         </div>
-      
-      </div>        
+      </div>
 
-      <nav class="subnav" aria-label="Section navigation">
-        <a href="#lung">Lung</a> |
-        <a href="#heart">Heart</a> |
-        <a href="#ribs">Ribs</a> |
-        <a href="#vertebrae">Vertebrae</a> |
-        <a href="#sternum">Sternum</a>
-      </nav>
+      <div class="header-top" style="margin-top:0;">
+        <div></div>
+        <nav class="subnav" aria-label="Section navigation">
+          <a href="#lung">Lung</a> |
+          <a href="#heart">Heart</a> |
+          <a href="#ribs">Ribs</a> |
+          <a href="#vertebrae">Vertebrae</a> |
+          <a href="#sternum">Sternum</a>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -413,7 +419,6 @@
 
           const newH = Math.ceil(contentH * scale);
           iframe.style.height = newH + 'px';
-
         } catch(e){}
       }
 
